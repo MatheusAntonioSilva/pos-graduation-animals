@@ -18,20 +18,27 @@
     "password": "mudar123"
 }
 
+# Faça o Login para obter o token de autenticação
+## http://127.0.0.1:8000/api/login
+
+{
+    "email": "miguel@gmail.com",
+    "password": "mudar123"
+}
+
+
 # Get index para ver registros criados
 ## http://127.0.0.1:8000/api/users
-```
+### Informe no Authorization o Bearer token, o token retornado pela aplicação
 
-
-```json
 # Post para criar animal
 ## http://127.0.0.1:8000/api/pets
+### Informe no Authorization o Bearer token, o token retornado pela aplicação
 
 {
     "name": "Bug",
     "description": "Bug Ney",
-    "age": 18,
-    "user_id": 1
+    "age": 18
 }
 
 # Get index para ver registros criados

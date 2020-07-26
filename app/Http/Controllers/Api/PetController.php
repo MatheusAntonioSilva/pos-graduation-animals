@@ -38,17 +38,15 @@ class PetController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            $pet = new Pet();
-            $pet->fill($request->all());
-            $pet->save();
+        $currentUser = auth('api')->user();
+        
+        $params = $request->all();
+        $params['user_id'] = $currentUser['id'];
+        
+        $pet = new Pet();
+        $pet->fill($params);
+        $pet->save();
 
-            return response()->json($pet, 201);
-        } catch (\Exception $e) {
-            return response()->json([
-                'title' => 'Erro',
-                'msg' => 'Erro interno do servidor'
-            ], 500);
-        }
+        return response()->json($pet, 201);
     }
 }

@@ -38,17 +38,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            $user = new User();
-            $user->fill($request->all());
-            $user->save();
+		$user = new User();
+		$user->fill($request->all());
+		$user->save();
+    }
 
-            return response()->json($user, 201);
-        } catch (\Exception $e) {
-            return response()->json([
-                'title' => 'Erro',
-                'msg' => 'Erro interno do servidor'
-            ], 500);
-        }
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function show(User $user)
+    {
+        return response()->json($user);
     }
 }

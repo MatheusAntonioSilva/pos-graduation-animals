@@ -14,13 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => ['apiJwt']], function () {
+    Route::get('/pets', 'Api\PetController@index');
+    Route::post('/pets', 'Api\PetController@store');
+
+    Route::get('/users', 'Api\UserController@index');
+
+    Route::post('logout', 'Api\AuthController@logout');
 });
 
-Route::get('/users', 'Api\UserController@index');
+Route::post('login', 'Api\AuthController@login');
 Route::post('/users', 'Api\UserController@store');
 
-Route::get('/pets', 'Api\PetController@index');
-Route::post('/pets', 'Api\PetController@store');
 
